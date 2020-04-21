@@ -1,0 +1,13 @@
+{
+  "schedule_period_sec": 5,
+  "worker_run_timeout": 300,
+  "worker_timeout_mulitiple":5,
+  "fetch_mq_msg_timeout": 100,
+  "algo_data_sync_period_sec": 60,
+  "reports_upload_period_sec": 5,
+  "throughput_interval_sec": 7200,
+  "sched_result_save_dir": "/data/deepnorth/status/scheduler",
+  "dump_json_interval_sec": 20,
+  "host_info_ttl": 120,
+  "etcd_urls": "@ETCD_URLS@"
+}

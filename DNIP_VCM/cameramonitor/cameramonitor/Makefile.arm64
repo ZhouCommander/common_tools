@@ -1,0 +1,46 @@
+
+TARGET = cameramonitor
+CXX = g++
+CXXFLAGS = -std=c++11 -ggdb3 -O2 -Wall
+OEXT = o
+
+INCLUDES = -I/nfs/BaseGroup/3rdparty/boost_1_67_0/install_dir_linux_arm64/include -I/nfs/BaseGroup/3rdparty/cpprestsdk-2.10.1/Release/include  -I/nfs/BaseGroup/3rdparty/openssl_1_0_2g/install_dir_linux_arm64/include
+DEP_LIBS =/nfs/BaseGroup/3rdparty/cpprestsdk-2.10.1/Release/build.release.linux.arm64/Binaries/libcpprest.a /nfs/BaseGroup/3rdparty/boost_1_67_0/install_dir_linux_arm64/lib/libboost_system.a /nfs/BaseGroup/3rdparty/boost_1_67_0/install_dir_linux_arm64/lib/libboost_filesystem.a /nfs/BaseGroup/3rdparty/boost_1_67_0/install_dir_linux_arm64/lib/libboost_program_options.a  -lgflags -lpthread -lcrypto -lssl -Wl,-Bstatic -llog4cpp -Wl,-Bdynamic 
+
+all : format $(TARGET) 
+
+## source and object files 
+SRCS = AlgoParameter.cpp \
+	AppmgClient.cpp\
+	Camera.cpp\
+	Config.cpp\
+	ETCDWrapper.cpp\
+	main.cpp\
+	Utility.cpp\
+	VideoCaptureApp.cpp\
+	VideoCaptureManager.cpp\
+    AESCrypto.cpp
+
+OBJS = $(SRCS:.cpp=.$(OEXT))
+
+# =============
+# File suffixes
+# =============
+.SUFFIXES: .cpp .$(OEXT)
+
+# ====================
+#compile all cpp files
+# ===================
+%.${OEXT}: %.cpp
+	${CXX} ${CXXFLAGS} ${INCLUDES} -c $<;
+
+# Executable binary
+$(TARGET): $(OBJS) 
+	$(CXX) ${CXXFLAGS} -o $@ $^ $(DEP_LIBS)
+
+format:
+	dos2unix *.cpp
+
+.PHONY: clean
+clean:
+	rm -f *.$(OEXT) $(TARGET) 

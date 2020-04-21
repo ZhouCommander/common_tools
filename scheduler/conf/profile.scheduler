@@ -1,0 +1,9 @@
+#
+# profile.scheduler:
+#   setup scheduler environment variables
+#
+
+PATH=$PATH:/opt/deepnorth/scheduler/scheduler/bin
+SCHEDULER_CONF_DIR=/opt/deepnorth/scheduler/scheduler/conf
+
+export PATH SCHEDULER_CONF_DIR

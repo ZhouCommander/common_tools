@@ -1,0 +1,44 @@
+VERSION = 2.4
+BUILLD_DATE =`date  +%Y%m%d%H%M%S`
+
+INTSALL_NAME = camera-pic-upload
+INTSALL_DIR = camera_pic_upload
+INSTALL_PATH = /opt/deepnorth/${INTSALL_DIR}/
+TEMP_DIR = release/${INSTALL_PATH}
+
+all:
+	make package
+	make deb
+package:
+	cp ../common/clean_tmp/clean_tmp.py src/
+	sed -i "s#__BUILD_DATE__#${BUILLD_DATE}#g" src/main.py
+	sed -i "s#__BUILD_VERSION__#${VERSION}#g" src/main.py
+	pyinstaller -F src/main.py -n ${INTSALL_DIR} --hidden-import urllib3 --hidden-import requests --runtime-tmpdir /opt/deepnorth/work
+	if [ ! -d "${TEMP_DIR}" ]; then \
+		mkdir -p ${TEMP_DIR}; \
+	fi
+	mv ./dist/${INTSALL_DIR} ${TEMP_DIR}
+	cp -rf conf/* ${TEMP_DIR}
+
+	if [ ! -d "${TEMP_DIR}/etc/ffmpeg" ]; then \
+		mkdir -p ${TEMP_DIR}/etc/ffmpeg; \
+	fi
+	cp -rf /nfs/BaseGroup/3rdparty/ffmpeg/ffmpeg-3.4.2-arm64-64bit-static/*  ${TEMP_DIR}/etc/ffmpeg
+	chmod +x ${TEMP_DIR}/etc/ffmpeg/ffmpeg
+	chmod +x ${TEMP_DIR}/etc/ffmpeg/ffprobe
+	dos2unix script/*.sh
+	cp -rf script ${TEMP_DIR}
+rpm:
+	fpm -s dir -t rpm -v ${VERSION} -n ${INTSALL_NAME} --vendor "deepnorth" --description "deepnorth" -C ./release
+	rm -rf "${TEMP_DIR}"
+deb:
+	fpm -s dir -t deb -v ${VERSION} -n ${INTSALL_NAME} --vendor "deepnorth" --description "deepnorth" --pre-install ${TEMP_DIR}/script/pre_install_ubuntu.sh --post-install ${TEMP_DIR}/script/install_ubuntu.sh --before-remove ${TEMP_DIR}/script/pre_uninstall_ubuntu.sh -C ./release
+	rm -rf ./release
+clean:
+	sed -i "s/^.*BUILD_DATE = .*/BUILD_DATE = '__BUILD_DATE__'/" src/main.py
+	sed -i "s/^.*BUILD_VERSION = .*/BUILD_VERSION = '__BUILD_VERSION__'/" src/main.py
+	rm -rf dist
+	rm -rf build
+	rm -rf release
+	rm ${INTSALL_DIR}.spec
+	rm *.deb

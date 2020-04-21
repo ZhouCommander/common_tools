@@ -1,0 +1,14 @@
+{
+    "etcd_urls": "http://127.0.0.1:2379",
+    "mq_host": "127.0.0.1",
+    "mq_port": 5672,
+    "mq_vhost": "/",
+    "mq_connect_retry_count": 10,
+
+    "video_dir": "/videos",
+    "video_bak_dir": "",
+    "video_time_start": "2019-09-05-08-00-00",
+    "video_time_end": "2019-09-05-19-00-00",
+    "video_exts": [".mp4", ".MP4", ".avi", ".AVI",".png",".PNG",".jpg",".JPG"],
+    "camera_ids": [5, "1-3"]
+}

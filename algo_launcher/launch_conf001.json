@@ -1,0 +1,13 @@
+{   "sql_model":"sql",
+    "Algo_List": [
+        {
+            "algo_path":"/data/tech",
+            "adaptor": "ad_pyevent", 
+            "Q_name": "people", 
+            "timeout": 600, 
+            "gpu": [
+                1
+            ]
+        }
+    ]
+}

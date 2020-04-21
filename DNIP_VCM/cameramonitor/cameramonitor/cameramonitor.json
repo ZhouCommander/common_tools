@@ -1,0 +1,99 @@
+{
+	"Error": [
+		{
+			"Code": 0,
+			"Message": "OK"
+		},
+		{
+			"Code": 50,
+			"Message": "Unknown error"
+		},
+		{
+			"Code": 51,
+			"Message": "Camera unavailable"
+		},
+		{
+			"Code": 52,
+			"Message": "No enough disk"
+		},
+		{
+			"Code": 53,
+			"Message": "No permission to write"
+		},
+		{
+			"Code": 54,
+			"Message": "Connect refused"
+		},
+		{
+			"Code": 55,
+			"Message": "Disk quota exceeded"
+		},
+		{
+			"Code": 56,
+			"Message": "500 Internal Server Error"
+		},
+		{
+			"Code": 57,
+			"Message": "No space left on device"
+		},
+		{
+			"Code": 100,
+			"Message": "Invalid parameter"
+		},
+		{
+			"Code": 101,
+			"Message": "Internal error"
+		},
+		{
+			"Code": 2,
+			"Message": "Can not find videocapture"
+		}
+	],
+	"VideoCaptureFullPath": "/opt/deepnorth/cameracapture/videocapture/videocapture",
+	"VideoCaptureWorkDir": "/opt/deepnorth/cameracapture/videocapture",
+	"CaptureInterface": "ffmpeg",
+	"Runas": "root",
+	"BufferTime": 10,
+	"UpdateInterval": 10,
+	"CaptureInterval": 7200,
+	"TTL": 30,
+	"AppmgPort": 5050,
+	"EtcdUrls": "@etcd_urls@",
+	"CaptureProtocol": "tcp",
+	"DBRestPath": "@rest_scan_path@",
+	"DBMapping": {
+		"CameraTableName": "vm_camera",
+		"CameraCaptureHost": "capture_host",
+		"CameraName": "name",
+		"CameraID": "id",
+		"CameraStreamUrl": "stream_url",
+		"CameraAlgoParameterID": "algo_parameter_id",
+		"CameraEnabled": "enabled",
+		"CameraCaptureDir": "capture_dir",
+		"AlgoParaInstance": "vm_algo_instance",
+		"AlgoParaTableName": "vm_algo_parameter",
+		"AlgoParaID": "id",
+		"AlgoParaName": "name",
+		"AlgoParaAlgoID": "algo_id",
+		"AlgoParaAlgoType": "algo_type",
+		"AlgoParaAlgoResolution": "algo_resolution",
+		"AlgoParaDailyStart": "daily_start",
+		"AlgoParaDailyEnd": "daily_end",
+		"AlgoParaCaptureType": "capture_type",
+		"AlgoParaCaptureIntevalSec": "capture_inteval_sec",
+		"AlgoParaMediaKeepHours": "media_keep_hours",
+		"AlgoParaProcessFps": "process_fps",
+		"AlgoParaMessageQueueUrl": "message_queue_url",
+		"AlgoParaExtraParameter": "extra_parameter",
+		"AlgoParaUploadCloud": "upload_cloud",
+		"AlgoParaCreateTime": "create_time",
+		"InstanceAlgoid": "algo_id",
+		"InstanceCameraid": "camera_id",
+		"InstanceHostid": "host_id",
+		"InstanceWorktype": "worker_type",
+		"InstanceScheduletype": "schedule_type",
+		"InstanceOverrideAlgoparams": "override_algo_params",
+		"InstanceEnable": "enable",
+		"InstanceStatus": "status"
+	}
+}
